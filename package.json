@@ -1,0 +1,12 @@
+{
+  "name": "webclipper-backend",
+  "version": "0.0.1",
+  "main": "index.js",
+  "type": "module",
+  "repository": "git@github.com:webclipper/webclipper-backend.git",
+  "author": "DiamondYuan <admin@diamondyuan.com>",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.14.2"
+  }
+}
