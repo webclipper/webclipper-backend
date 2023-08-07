@@ -33,7 +33,7 @@ function redirect(ctx, state, query) {
 router.get("/yuque_oauth", async (ctx) => {
   console.log("yuque_oauth");
   const { code, state } = ctx.query;
-  const response = fetch("https://www.yuque.com/oauth2/token", {
+  const response = await fetch("https://www.yuque.com/oauth2/token", {
     method: "POST",
     body: JSON.stringify({
       client_id: config.yuqueClientId,
@@ -41,7 +41,7 @@ router.get("/yuque_oauth", async (ctx) => {
       code,
       grant_type: "authorization_code",
     }),
-  });
+  }).then((re) => re.json());
   redirect(
     ctx,
     state,
@@ -67,7 +67,7 @@ router.get("/onenote_oauth", async (ctx) => {
         code,
       }),
     }
-  );
+  ).then((re) => re.json());
   redirect(
     ctx,
     state,
