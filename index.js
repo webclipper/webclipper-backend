@@ -14,6 +14,8 @@ const config = {
 console.log("port : ", !!config.port);
 console.log("yuqueClientId : ", !!config.yuqueClientId);
 console.log("yuqueClientSecret : ", !!config.yuqueClientSecret);
+console.log("oneNoteClientId : ", !!config.oneNoteClientId);
+console.log("oneNoteRedirectUrl : ", !!config.oneNoteRedirectUrl);
 
 const app = new Koa();
 const router = new Router();
