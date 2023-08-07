@@ -30,6 +30,8 @@ function redirect(ctx, state, query) {
   ctx.status = 302;
 }
 
+/** ---------------https://webclipper-oauth.yfd.im------------------ */
+
 router.get("/yuque_oauth", async (ctx) => {
   console.log("yuque_oauth", config);
   const { code, state } = ctx.query;
@@ -91,10 +93,7 @@ router.get("/onenote_oauth", async (ctx) => {
   );
 });
 
-router.get("/ping", async (ctx) => {
-  ctx.status = 200;
-  ctx.body = `pong ${Date.now()}`;
-});
+/** ---------------https://api.clipper.website------------------ */
 
 /**
  * not support login
@@ -118,7 +117,7 @@ router.get("/api/refresh", async (ctx) => {
 });
 
 router.get("/api/user", async (ctx) => {
-  ctx.status = "200";
+  ctx.status = 200;
   ctx.body = JSON.stringify({
     result: {
       name: "Version expired.",
@@ -128,6 +127,30 @@ router.get("/api/user", async (ctx) => {
       admin: false,
     },
   });
+});
+
+/** ---------------https://resource.clipper.website------------------ */
+
+router.get("/config.json", async (ctx) => {
+  ctx.status = 200;
+  ctx.body = JSON.stringify({
+    iconfont: "https://at.alicdn.com/t/font_1402208_ghcp6tuu13c.js",
+    chromeWebStoreVersion: "1.33.0",
+    edgeWebStoreVersion: "1.33.0",
+    firefoxWebStoreVersion: "1.33.0",
+    privacyLocale: ["en-US", "zh-CN"],
+    changelogLocale: ["en-US", "zh-CN"],
+  });
+});
+
+router.get("/privacy/(.*)", async (ctx) => {
+  ctx.status = 200;
+  ctx.body = `This version of the web clipper has expired, please upgrade.`;
+});
+
+router.get("/changelog/(.*)", async (ctx) => {
+  ctx.status = 200;
+  ctx.body = `This version of the web clipper has expired, please upgrade.`;
 });
 
 app.use(router.routes()).use(router.allowedMethods());
