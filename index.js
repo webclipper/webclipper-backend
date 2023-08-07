@@ -35,6 +35,9 @@ router.get("/yuque_oauth", async (ctx) => {
   const { code, state } = ctx.query;
   const response = await fetch("https://www.yuque.com/oauth2/token", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       client_id: config.yuqueClientId,
       client_secret: config.yuqueClientSecret,
@@ -62,6 +65,9 @@ router.get("/onenote_oauth", async (ctx) => {
     "https://login.microsoftonline.com/common/oauth2/v2.0/token",
     {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         client_id: config.oneNoteClientId,
         grant_type: "authorization_code",
