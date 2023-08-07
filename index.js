@@ -68,7 +68,7 @@ router.get("/onenote_oauth", async (ctx) => {
   );
 });
 
-router.get("/ping", async () => {
+router.get("/ping", async (ctx) => {
   ctx.status = 200;
   ctx.body = `pong ${Date.now()}`;
 });
