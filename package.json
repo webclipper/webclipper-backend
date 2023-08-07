@@ -7,6 +7,10 @@
   "author": "DiamondYuan <admin@diamondyuan.com>",
   "license": "MIT",
   "dependencies": {
-    "koa": "^2.14.2"
+    "@koa/router": "^12.0.0",
+    "@types/koa__router": "^12.0.0",
+    "koa": "^2.14.2",
+    "node-fetch": "^3.3.2",
+    "qs": "^6.11.2"
   }
 }
