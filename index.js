@@ -29,6 +29,7 @@ function redirect(ctx, state, query) {
 }
 
 router.get("/yuque_oauth", async (ctx) => {
+  console.log("yuque_oauth");
   const { code, state } = ctx.query;
   const response = fetch("https://www.yuque.com/oauth2/token", {
     method: "POST",
@@ -43,6 +44,7 @@ router.get("/yuque_oauth", async (ctx) => {
 });
 
 router.get("/onenote_oauth", async (ctx) => {
+  console.log("onenote_oauth");
   const { code, state } = ctx.query;
   const response = fetch(
     "https://login.microsoftonline.com/common/oauth2/v2.0/token",
