@@ -2,6 +2,10 @@ import Router from "@koa/router";
 import Koa from "koa";
 import * as qs from "qs";
 import fetch from "node-fetch";
+import fs from "fs/promises";
+import { resolve, dirname } from "path";
+
+const __dirname = dirname(new URL(import.meta.url).pathname);
 
 const config = {
   port: process.env.PORT || 3000,
@@ -145,12 +149,12 @@ router.get("/config.json", async (ctx) => {
 
 router.get("/privacy/(.*)", async (ctx) => {
   ctx.status = 200;
-  ctx.body = `This version of the web clipper has expired, please upgrade.`;
+  ctx.body = await fs.readFile(resolve(__dirname, "privacy.md"), "utf-8");
 });
 
 router.get("/changelog/(.*)", async (ctx) => {
   ctx.status = 200;
-  ctx.body = `This version of the web clipper has expired, please upgrade.`;
+  ctx.body = await fs.readFile(resolve(__dirname, "changelog.md"), "utf-8");
 });
 
 app.use(router.routes()).use(router.allowedMethods());
