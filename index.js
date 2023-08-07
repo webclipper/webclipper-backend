@@ -42,7 +42,14 @@ router.get("/yuque_oauth", async (ctx) => {
       grant_type: "authorization_code",
     }),
   });
-  redirect(ctx, state, `${qs.stringify(response.data)}`);
+  redirect(
+    ctx,
+    state,
+    `${qs.stringify({
+      access_token: response.access_token,
+      type: "yuque_oauth",
+    })}`
+  );
 });
 
 router.get("/onenote_oauth", async (ctx) => {
@@ -65,9 +72,9 @@ router.get("/onenote_oauth", async (ctx) => {
     ctx,
     state,
     `${qs.stringify({
-      access_token: response.data.access_token,
+      access_token: response.access_token,
       type: "onenote_oauth",
-      refresh_token: response.data.refresh_token,
+      refresh_token: response.refresh_token,
     })}`
   );
 });
