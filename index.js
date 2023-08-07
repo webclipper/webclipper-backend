@@ -42,6 +42,9 @@ router.get("/yuque_oauth", async (ctx) => {
       grant_type: "authorization_code",
     }),
   }).then((re) => re.json());
+
+  console.log("yuque_oauth response", response);
+
   redirect(
     ctx,
     state,
@@ -55,7 +58,7 @@ router.get("/yuque_oauth", async (ctx) => {
 router.get("/onenote_oauth", async (ctx) => {
   console.log("onenote_oauth");
   const { code, state } = ctx.query;
-  const response = fetch(
+  const response = await fetch(
     "https://login.microsoftonline.com/common/oauth2/v2.0/token",
     {
       method: "POST",
@@ -68,6 +71,9 @@ router.get("/onenote_oauth", async (ctx) => {
       }),
     }
   ).then((re) => re.json());
+
+  console.log("onenote_oauth response", response);
+
   redirect(
     ctx,
     state,
@@ -82,6 +88,40 @@ router.get("/onenote_oauth", async (ctx) => {
 router.get("/ping", async (ctx) => {
   ctx.status = 200;
   ctx.body = `pong ${Date.now()}`;
+});
+
+/**
+ * not support login
+ */
+router.get("/api/user/oauth/google", async (ctx) => {
+  ctx.status = 302;
+  ctx.set("Location", `https://clipper.website/powerpack`);
+});
+
+router.get("/api/user/oauth/github", async (ctx) => {
+  ctx.status = 302;
+  ctx.set("Location", `https://clipper.website/powerpack`);
+});
+
+// return empty string
+router.get("/api/refresh", async (ctx) => {
+  ctx.status = 200;
+  ctx.body = JSON.stringify({
+    result: "",
+  });
+});
+
+router.get("/api/user", async (ctx) => {
+  ctx.status = "200";
+  ctx.body = JSON.stringify({
+    result: {
+      name: "Version expired.",
+      avatar_url: "",
+      email: "Version expired.",
+      expire_date: "2020-01-01",
+      admin: false,
+    },
+  });
 });
 
 app.use(router.routes()).use(router.allowedMethods());
