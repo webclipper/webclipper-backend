@@ -31,7 +31,7 @@ function redirect(ctx, state, query) {
 }
 
 router.get("/yuque_oauth", async (ctx) => {
-  console.log("yuque_oauth");
+  console.log("yuque_oauth", config);
   const { code, state } = ctx.query;
   const response = await fetch("https://www.yuque.com/oauth2/token", {
     method: "POST",
