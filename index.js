@@ -65,8 +65,9 @@ router.get("/yuque_oauth", async (ctx) => {
 });
 
 router.get("/onenote_oauth", async (ctx) => {
-  console.log("onenote_oauth");
+  console.log("onenote_oauth", config);
   const { code, state } = ctx.query;
+  console.log("onenote_query", ctx.query);
   const response = await fetch(
     "https://login.microsoftonline.com/common/oauth2/v2.0/token",
     {
