@@ -73,9 +73,9 @@ router.get("/onenote_oauth", async (ctx) => {
     {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: JSON.stringify({
+      body: qs.stringify({
         client_id: config.oneNoteClientId,
         grant_type: "authorization_code",
         scope: "Notes.Create User.Read offline_access",
